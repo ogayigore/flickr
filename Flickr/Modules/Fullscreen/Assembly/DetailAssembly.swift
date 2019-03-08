@@ -12,16 +12,18 @@ import UIKit
 class DetailAssembly {
     func build() -> UIViewController? {
         let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return nil }
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
+        guard let detailVC = vc as? DetailViewController else { return nil }
         
         let presenter = DetailPresenter()
         let interactor = DetailInteractor()
         
-        vc.detailPresenterInput = presenter
+        detailVC.detailPresenterInput = presenter
         presenter.detailInteractorInput = interactor
-        presenter.detailViewInput = vc
+        presenter.detailViewInput = detailVC
         interactor.detailInteractorOutput = presenter
         
         return vc
+
     }
 }

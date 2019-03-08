@@ -15,7 +15,7 @@ class Router {
     func rootModuleController() -> UIViewController {
         let galleryAssembly = GalleryAssembly()
         guard let gallery = galleryAssembly.build() else { return UIViewController() }
-        activeNavigationController = gallery as! UINavigationController
+        activeNavigationController.setViewControllers([gallery], animated: true)
         return activeNavigationController
     }
     
@@ -26,14 +26,15 @@ class Router {
     }
     
     func performTransition(view: UIViewController) {
+        print("performTransition()")
         activeNavigationController.pushViewController(view, animated: true)
     }
 }
 
 extension Router: GalleryPresenterOutput {
     func showPhotoDetails(item: GalleryItem) {
-        if activeNavigationController != nil {
-            performTransition(view: showDetail(pic: item.imageURL))
-        }
+        print("showPhotoDetails()")
+        performTransition(view: showDetail(pic: item.imageURL))
+        
     }
 }

@@ -13,16 +13,11 @@ class GalleryAssembly {
     func build() -> UIViewController? {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "GalleryNavigationControllerIdentifier")
-        
-        guard let navigationVC = vc as? UINavigationController,
-        let galleryVC = navigationVC.viewControllers.first as? ViewController else {
-            return nil
-        }
+        let vc = storyboard.instantiateViewController(withIdentifier: "GalleryViewControllerIdentifier")
+        guard let galleryVC = vc as? ViewController else { return nil }
         
         let presenter = GalleryPresenter()
         let interactor = GalleryInteractor()
-//        let router = Router()
         
         galleryVC.galleryViewOutput = presenter
         presenter.galleryInteractorInput = interactor

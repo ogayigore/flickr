@@ -20,7 +20,6 @@ class GalleryPresenter: NSObject {
 extension GalleryPresenter: GalleryViewOutput {
     func photoPressed(id: String) {
         print("photoPressed()")
-        print("презентор 2 \(self) \(router)")
         galleryInteractorInput.getPhoto(id: id)
     }
     
